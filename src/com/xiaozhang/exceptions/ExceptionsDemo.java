@@ -39,7 +39,8 @@ public class ExceptionsDemo {
         try {
             account.withdraw(10);
         } catch (AccountException e) {
-            e.printStackTrace();
+            var cause = e.getCause();
+            System.out.println(cause.getMessage());
         }
     }
 
