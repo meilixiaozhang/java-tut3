@@ -18,17 +18,17 @@ public class ExceptionsDemo {
 //            System.out.println(ex.getMessage());  // file.txt (No such file or directory)
 //        }
 //      ------------------------------------------------
-        // 自动生成的try/catch
-        try (
-                var reader = new FileReader("file.txt");
-                var writer = new FileWriter("...");
-        ) {
-            var value = reader.read();
-        } catch (IOException e) {  // FileNotFoundException < IOException 可以只写这个IOException
-            System.out.println("Could not read data");
-        }
-
-//      --------------------------------------------------
+//        try (
+//                var reader = new FileReader("file.txt");
+//                var writer = new FileWriter("...");
+//        ) {
+//            var value = reader.read();
+//        } catch (IOException e) {  // FileNotFoundException < IOException 可以只写这个IOException
+//            System.out.println("Could not read data");
+//        }
+//      =================================================
+        var account = new Account();
+        account.deposit(-1); //Exception in thread "main" java.lang.IllegalArgumentException:
     }
 
     public static void sayHello(String name) {
