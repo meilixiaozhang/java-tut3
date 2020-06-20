@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class ExceptionsDemo {
-    public static void show() {
+    public static void show() throws IOException{
 //        sayHello(null);  // Exception in thread "main" java.lang.NullPointerException -> unchecked exception
 //      ===============================================
 //        try {
@@ -28,7 +28,12 @@ public class ExceptionsDemo {
 //        }
 //      =================================================
         var account = new Account();
-        account.deposit(-1); //Exception in thread "main" java.lang.IllegalArgumentException:
+        try {
+            account.deposit(-1); //Exception in thread "main" java.lang.IllegalArgumentException:
+        } catch (Throwable e) {
+            System.out.println("Logging");
+            throw e;
+        }
     }
 
     public static void sayHello(String name) {
