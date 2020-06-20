@@ -2,11 +2,12 @@ package com.xiaozhang.concurrency;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.LongAdder;
 
 public class DownloadStatus {
 
     private boolean isDone;
-    private AtomicInteger totalBytes = new AtomicInteger();
+    private LongAdder totalBytes = new LongAdder();
     private int totalFiles;
 
     public boolean isDone() {
@@ -17,15 +18,15 @@ public class DownloadStatus {
         isDone = true;
     }
     public void incrementTotalBytes() {
-        totalBytes.incrementAndGet();
+        totalBytes.increment();
     }
 
-    public synchronized void incrementTotalFile() {
+    public synchronized void incrementTotalFiles() {
             totalFiles++;
     }
 
     public int getTotalBytes() {
-        return totalBytes.get();
+        return totalBytes.intValue();
     }
 
     public int getTotalFiles() {
