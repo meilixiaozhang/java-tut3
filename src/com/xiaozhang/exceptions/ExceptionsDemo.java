@@ -27,12 +27,19 @@ public class ExceptionsDemo {
 //            System.out.println("Could not read data");
 //        }
 //      =================================================
+//        var account = new Account();
+//        try {
+//            account.deposit(-1); //Exception in thread "main" java.lang.IllegalArgumentException:
+//        } catch (Throwable e) {
+//            System.out.println("Logging");
+//            throw e;
+//        }
+//      --------------------------------------------------
         var account = new Account();
         try {
-            account.deposit(-1); //Exception in thread "main" java.lang.IllegalArgumentException:
-        } catch (Throwable e) {
-            System.out.println("Logging");
-            throw e;
+            account.withdraw(10);
+        } catch (InsufficientFundsException e) {
+            System.out.println(e.getMessage());
         }
     }
 
