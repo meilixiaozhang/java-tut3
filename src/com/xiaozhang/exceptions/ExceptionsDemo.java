@@ -18,18 +18,25 @@ public class ExceptionsDemo {
 //        }
 //      ------------------------------------------------
         // 自动生成的try/catch
+        FileReader reader = null;
         try {
-            var reader = new FileReader("file.txt");
+            reader = new FileReader("file.txt");
             var value = reader.read();
-            new SimpleDateFormat().parse(""); // parse exception
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        catch (IOException | ParseException e) {  // FileNotFoundException < IOException 可以只写这个IOException
+        catch (IOException e) {  // FileNotFoundException < IOException 可以只写这个IOException
             System.out.println("Could not read data");
-        } // catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        }
+        finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 //      --------------------------------------------------
     }
 
