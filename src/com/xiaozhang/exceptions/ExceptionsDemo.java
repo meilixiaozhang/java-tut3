@@ -2,6 +2,7 @@ package com.xiaozhang.exceptions;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,25 +19,15 @@ public class ExceptionsDemo {
 //        }
 //      ------------------------------------------------
         // 自动生成的try/catch
-        FileReader reader = null;
-        try {
-            reader = new FileReader("file.txt");
+        try (
+                var reader = new FileReader("file.txt");
+                var writer = new FileWriter("...");
+        ) {
             var value = reader.read();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {  // FileNotFoundException < IOException 可以只写这个IOException
+        } catch (IOException e) {  // FileNotFoundException < IOException 可以只写这个IOException
             System.out.println("Could not read data");
         }
-        finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+
 //      --------------------------------------------------
     }
 
